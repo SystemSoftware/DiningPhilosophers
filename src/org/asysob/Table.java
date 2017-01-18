@@ -13,9 +13,11 @@ public class Table {
         queue = new Semaphore(0);
         in_queue = 0;
         mutex = new Semaphore(1);
+        horst = new Semaphore(n_seats-1);
     }
 
     public int join ( int id ) {
+        horst.P();
         while (true) {
             mutex.P();
             for (int s = 0; s < seats.length; s++) {
@@ -56,6 +58,7 @@ public class Table {
             queue.V();
         }
         mutex.V();
+        horst.V();
     }
 
     public void printState () {
@@ -79,4 +82,5 @@ public class Table {
     private Semaphore queue;
     private int in_queue;
     private Semaphore mutex;
+    private Semaphore horst;
 }
