@@ -28,12 +28,13 @@ public class Philosopher implements Runnable {
                 table.takeLeftStick(seat);
                 // Thread.sleep(100);
                 table.takeRightStick(seat);
-                Thread.sleep((int) (Math.random() * 200));
+                // *************** EAT ***************
+                Thread.sleep((int) (Math.random() * 500));
                 table.dropLeftStick(seat);
                 table.dropRightStick(seat);
                 table.leave(seat);
                 n_meals++;
-                // Think
+                // *************** THINK ***************
                 Thread.sleep((int) (Math.random() * 100));
             }
             catch (InterruptedException e) {
